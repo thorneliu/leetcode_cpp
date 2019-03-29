@@ -12,7 +12,7 @@
  * Testcase Example:  '[3,9,20,15,7]\n[9,3,15,20,7]'
  *
  * 根据一棵树的前序遍历与中序遍历构造二叉树。
- * 
+ * preorder = [3,9,20,15,7]
  * 注意:
  * 你可以假设树中没有重复的元素。
  * 
@@ -51,6 +51,8 @@ struct TreeNode* buildTree(int* preorder, int preorderSize, int* inorder, int in
     
     int rootVal = preorder[0];
     struct TreeNode* root = newNode(rootVal);
+	
+	if (inorderSize == 1) return root;
     
     // find the root index in inorder list
     int idx = 0;
