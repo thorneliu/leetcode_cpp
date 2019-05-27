@@ -33,22 +33,10 @@
 struct ListNode* swapPairs(struct ListNode* head) {
     if(head == NULL || head->next == NULL) return head;
     
-    struct ListNode* firstNode = head;
-    struct ListNode* secondNode= firstNode->next;
     struct ListNode* newHead = head->next;
-    struct ListNode* swapedTail = NULL;
-    
-    while(firstNode != NULL && secondNode != NULL)
-    {
-        struct ListNode* secondnext =  secondNode->next;
-        secondNode->next = firstNode;
-        firstNode->next = secondnext;
-        if(swapedTail) swapedTail->next = secondNode;
-        
-        swapedTail = firstNode;
-        firstNode = secondnext;
-        if(firstNode) secondNode = firstNode->next;
-    }
-    
+    struct ListNode* headNextNext = head->next->next;
+    newHead->next = head;
+    head->next = swapPairs(headNextNext);
+
     return newHead;
 }

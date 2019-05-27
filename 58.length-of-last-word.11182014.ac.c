@@ -27,27 +27,25 @@
 int lengthOfLastWord(char* s) {
     if(s == NULL) return 0;
     
-    int len = 0;
-    char *p = s;
-    bool endofWord = false;
-    while(*p != '\0')
+    int res = 0;
+    int strSize = strlen(s);
+    bool getWord = false;
+
+    for (int i = 0; i < strSize; i++)
     {
-        if (*p != ' ')
+        if (getWord == false && s[i] != ' ')
         {
-            if(endofWord && isalpha(*p))
-            {
-                len = 0;
-                endofWord = false;
-            }
-            
-            len++;
+            getWord = true;
+            res = 0;
         }
-        else
+
+        if (getWord == true && s[i] == ' ')
         {
-            endofWord = true;
+            getWord = false;
         }
-        p++;
+
+        if (s[i] != ' ') res++;
     }
-    
-    return len;
+
+    return res;
 }

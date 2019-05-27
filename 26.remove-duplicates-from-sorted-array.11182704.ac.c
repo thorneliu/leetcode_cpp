@@ -53,19 +53,17 @@
  */
 
 int removeDuplicates(int* nums, int numsSize) {
-    if (numsSize <= 0) return 0;
-    if (numsSize == 1) return 1;
-    
-    int retVal = 1;
-    int i = nums[0];
-    for (int j = 1; j < numsSize; j++) {
-        int element = nums[j];
-        if (nums[j] != i) {
-            //not a duplicated element
-            nums[retVal] = i = nums[j];
-            retVal ++;
-        } 
+    if (nums == NULL || numsSize <= 0) return 0;
+
+    int i = 0;
+    for (int j = 1; j < numsSize; j++)
+    {
+        if (nums[j] != nums[i])
+        {
+            i++;
+            nums[i] = nums[j];
+        }
     }
-    
-    return retVal;
+
+    return i + 1;
 }
